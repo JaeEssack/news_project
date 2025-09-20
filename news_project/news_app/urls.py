@@ -12,7 +12,7 @@ from . import views
 from news_app.views import CustomLogoutView
 
 urlpatterns = [
-    # Redirect to role-specific dashboard
+    # Redirect to role-specific dashboard   
     path('', views.redirect_dashboard, name='redirect_dashboard'),
 
     # Reader URLs
