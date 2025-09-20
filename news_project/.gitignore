@@ -1,0 +1,26 @@
+# Python compiled files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.env
+
+# Django database & local settings
+db.sqlite3
+local_settings.py
+
+# Django media & static files (if generated locally)
+/media
+/staticfiles
+
+# Sphinx build output
+docs/_build/
+
+# IDE / Editor folders
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
