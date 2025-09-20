@@ -11,6 +11,13 @@ ROLE_CHOICES = [
 
 
 class Publisher(models.Model):
+    """
+    Represents a news publisher.
+
+    Attributes:
+        name (str): Name of the publisher.
+        description (str): Optional description of the publisher.
+    """
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
 
@@ -19,6 +26,16 @@ class Publisher(models.Model):
     
 
 class CustomUser(AbstractUser):
+    """
+    Custom user model with roles: reader, editor, or journalist.
+
+    Attributes:
+        role (str): The role of the user, must be one of ROLE_CHOICES.
+        subscribed_publishers (ManyToMany): Publishers followed by a reader.
+        subscribed_journalists (ManyToMany): Journalists followed by a reader.
+        bio (str): Optional biography for journalists.
+        published_articles (ManyToMany): Articles authored by the journalist.
+    """
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
 
     # Reader-specific fields
@@ -36,7 +53,9 @@ class CustomUser(AbstractUser):
     )
 
     def save(self, *args, **kwargs):
-       
+        """
+        Override save method to adjust fields based on role and add user to corresponding group.
+        """
         if self.role == 'reader':
             self.bio = None
         elif self.role == 'journalist':
@@ -52,6 +71,17 @@ class CustomUser(AbstractUser):
             
 
 class Article(models.Model):
+    """
+    Represents a news article.
+
+    Attributes:
+        title (str): The title of the article.
+        content (str): The main text of the article.
+        publisher (ForeignKey): Publisher of the article.
+        journalist (ForeignKey): Journalist who wrote the article.
+        is_approved (bool): Whether the article has been approved.
+        created_at (datetime): When the article was created.
+    """
     title = models.CharField(max_length=255)
     content = models.TextField()
     publisher = models.ForeignKey(
