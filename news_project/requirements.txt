@@ -11,8 +11,6 @@ djangorestframework==3.15.2
 markdown==3.6
 drf-yasg==1.21.8   # Swagger/OpenAPI docs (optional)
 
-# --- Email / Notifications (optional but recommended) ---
-django-anymail==10.4
 
 # --- Testing & Development Tools ---
 pytest==8.3.3
