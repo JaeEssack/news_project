@@ -1,9 +1,18 @@
+"""
+URL configuration for the news_app Django application.
+
+Maps URL patterns to their corresponding views for readers, journalists, editors, 
+and authentication.
+"""
+
+
 from django.urls import path
 from django.contrib.auth.views import LogoutView
 from . import views
 from news_app.views import CustomLogoutView
 
 urlpatterns = [
+    # Redirect to role-specific dashboard   
     path('', views.redirect_dashboard, name='redirect_dashboard'),
 
     # Reader URLs

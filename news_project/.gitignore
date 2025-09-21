@@ -1,61 +1,26 @@
-# Byte-compiled / optimized / DLL files
+# Python compiled files
 __pycache__/
 *.py[cod]
-*$py.class
 
-# C extensions
-*.so
+# Virtual environment
+venv/
+.env
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+# Django database & local settings
+db.sqlite3
+local_settings.py
 
-# PyInstaller
-#  Usually adds files in the dist/ and build/ folders
-#  but builds them in the root folder
-#  (or where the main script is)
-*.spec
+# Django media & static files (if generated locally)
+/media
+/staticfiles
 
-# Sphinx documentation
+# Sphinx build output
 docs/_build/
 
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Windows
-[Dd]ebug.log
-[Dd]ebug.log.[0-9]*
-
-# IDEs and other local files
-.idea/
+# IDE / Editor folders
 .vscode/
-*.swp
-*~
-.DS_Store
+.idea/
 
-# Django stuff
-*.log
-local_settings.py
-db.sqlite3
+# OS files
+.DS_Store
+Thumbs.db
