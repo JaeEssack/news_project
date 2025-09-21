@@ -22,6 +22,9 @@ class Publisher(models.Model):
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):
+        """
+        Returns the name of the publisher.
+        """
         return self.name
     
 
@@ -54,7 +57,13 @@ class CustomUser(AbstractUser):
 
     def save(self, *args, **kwargs):
         """
-        Override save method to adjust fields based on role and add user to corresponding group.
+        Overrides the save method to perform additional actions before saving a user.
+
+        Adjusts the user's fields based on their role and adds the user to the corresponding
+        Django Group.
+
+        :param args: Additional arguments passed to the parent save method.
+        :param kwargs: Additional keyword arguments passed to the parent save method.
         """
         if self.role == 'reader':
             self.bio = None
@@ -95,4 +104,7 @@ class Article(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
+        """
+        Returns the title of the article.
+        """
         return self.title
