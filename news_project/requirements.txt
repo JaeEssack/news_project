@@ -1,8 +1,0 @@
-# Core Django framework
-Django==5.1.3
-
-# WSGI server for production
-gunicorn==23.0.0
-
-# Optional: documentation support
-sphinx==8.2.3
