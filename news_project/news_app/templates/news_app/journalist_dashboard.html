@@ -1,0 +1,25 @@
+{% extends "news_app/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Welcome, {{ user.username }} (Journalist)</h1>
+
+    <a href="{% url 'create_article' %}" class="btn btn-primary mb-3">Create New Article</a>
+
+    <h3>Your Articles</h3>
+    {% if articles %}
+        <ul class="list-group">
+            {% for article in articles %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>{{ article.title }}</span>
+                    <span class="badge bg-{{ article.is_approved|yesno:'success,danger' }}">
+                        {{ article.is_approved|yesno:"Approved,Pending Approval" }}
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">You haven't published any articles yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

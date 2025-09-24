@@ -1,0 +1,58 @@
+{% extends "news_app/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Welcome, {{ user.username }} (Reader)</h1>
+
+    <h3>Articles from Your Subscriptions</h3>
+    {% if articles %}
+        <ul class="list-group mb-4">
+            {% for article in articles %}
+                <li class="list-group-item">
+                    <h5>{{ article.title }}</h5>
+                    <p>{{ article.content|truncatewords:30 }}</p>
+                    <small class="text-muted">
+                        Published by {{ article.publisher.name }}
+                        {% if article.journalist %} | Journalist: {{ article.journalist.username }}{% endif %}
+                    </small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">No articles available from your subscriptions yet.</p>
+    {% endif %}
+
+    <h3>Manage Subscriptions</h3>
+    <div class="mb-3">
+        <h5>Publishers</h5>
+        <ul class="list-group">
+            {% for publisher in all_publishers %}
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>{{ publisher.name }}</span>
+                    {% if publisher in user.subscribed_publishers.all %}
+                        <a href="{% url 'unsubscribe_publisher' publisher.id %}" class="btn btn-sm btn-danger">Unsubscribe</a>
+                    {% else %}
+                        <a href="{% url 'subscribe_publisher' publisher.id %}" class="btn btn-sm btn-success">Subscribe</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        <h5>Journalists</h5>
+        <ul class="list-group">
+            {% for journalist in all_journalists %}
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>{{ journalist.username }}</span>
+                    {% if journalist in user.subscribed_journalists.all %}
+                        <a href="{% url 'unfollow_journalist' journalist.id %}" class="btn btn-sm btn-danger">Unfollow</a>
+                    {% else %}
+                        <a href="{% url 'follow_journalist' journalist.id %}" class="btn btn-sm btn-success">Follow</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
