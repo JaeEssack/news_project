@@ -53,12 +53,12 @@ WSGI_APPLICATION = "news_project.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'news_db'),
-        'USER': os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'postgres'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('DJANGO_DB_NAME', 'newsdb'),
+        'USER': os.environ.get('DJANGO_DB_USER', 'newsuser'),
+        'PASSWORD': os.environ.get('DJANGO_DB_PASSWORD', 'newspass'),
+        'HOST': os.environ.get('DJANGO_DB_HOST', 'db'),
+        'PORT': '3306'
     }
 }
 
@@ -78,4 +78,5 @@ STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 
